@@ -7,10 +7,10 @@ struct node
     node *R;
 };
 node *root,*temp;
-int count,key;
 
 class bst
 {
+    int count,key;
     public:
     void create();
     void insert(node*,node*);
@@ -185,7 +185,7 @@ void bst::mirror(node *root)
 int main()
 {
     bst t;
-    int ch;
+    int ch, key;
     char ans;
     do
     {
