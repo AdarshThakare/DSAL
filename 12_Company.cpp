@@ -1,5 +1,4 @@
 #include<iostream>
-#include<conio.h>
 #include<fstream>
 #include<stdlib.h>
 #include<iomanip>
@@ -51,12 +50,11 @@ char* Employee::GetDepartment()
 return Department;
 }
  
-void main()
+int main()
 {
 Employee emp,e;
 char option,ch,Dept[50];
 int ID,isFound;
-clrscr();
 fstream file;
 file.open(fileName,ios::ate|ios::in|ios::out|ios::binary);
 do
@@ -74,7 +72,7 @@ cout<<"********************"<<endl;
 cin>>option;
 switch(option)
 {
-case '1':
+case '1': {
 emp.ReadData();
 file.seekg(0,ios::beg);
 isFound=0;
@@ -96,8 +94,9 @@ file.seekp(0,ios::end);
 file.write((char*)&emp, sizeof(emp));
 cout<<endl<<"New record has been added successfully...";
 break;
- 
-case '2':
+}
+
+case '2': {
 isFound=0;
 cout<<endl<<"Enter ID of an employee to be searched:";
 cin>>ID;
@@ -119,7 +118,9 @@ file.clear();
 if(isFound==0)
 cout<<endl<<"Data not found for employee ID#"<<ID;
 break;
-case '3':
+}
+
+case '3': {
 isFound=0;
 cout<<"Enter department name to list employee within it:";
 cin>>Dept;
@@ -142,8 +143,9 @@ file.clear();
 if(isFound==0)
 cout<<endl<<"Data not found for department"<<Dept;
 break;
- 
-case '4':
+}
+
+case '4': {
 cout<<endl<<"Record for employee";
 file.clear();
 file.seekg(0,ios::beg);
@@ -162,8 +164,9 @@ file.read((char*)&e,sizeof(e));
 cout<<endl<<counter<<"records found......";
 file.clear();
 break;
- 
-case '5':
+}
+
+case '5': {
 int recordNo=0;
 cout<<endl<<"File is being modified....";
 cout<<endl<<"Enter employee ID to be updated:";
@@ -196,9 +199,10 @@ cout<<endl<<"Enter new record for employee having ID"<<ID;
 e.ReadData();
 file.write((char*)&e, sizeof(e));
 break;
- 
-case '6':
-recordNo=0;
+}
+
+case '6': {
+int recordNo=0;
 cout<<endl<<"Enter employment ID to be deleted:";
 cin>>ID;
 isFound=0;
@@ -250,13 +254,16 @@ file.close();
 remove(tempFile);
 file.open(fileName,ios::ate|ios::in|ios::out|ios::binary);
 break;
- 
-case '7':
+}
+
+case '7': {
 exit(0);
 break;
- 
-default:
+}
+
+default: {
 cout<<"Invalid Options";
+}
 }
 cout<<"\nDo you want to continue.....?y/n";
 cin>>ch;
